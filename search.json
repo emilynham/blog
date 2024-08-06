@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/BLOGSabrinaCarpenterResearchProject.html",
+    "href": "posts/BLOGSabrinaCarpenterResearchProject.html",
+    "title": "Unveiling the Evolution: Analyzing the Lyrical Sentiment and Streaming Patterns in Sabrina Carpenter’s Career",
+    "section": "",
+    "text": "August 5, 2024"
+  },
+  {
+    "objectID": "posts/BLOGSabrinaCarpenterResearchProject.html#conclusion",
+    "href": "posts/BLOGSabrinaCarpenterResearchProject.html#conclusion",
+    "title": "Unveiling the Evolution: Analyzing the Lyrical Sentiment and Streaming Patterns in Sabrina Carpenter’s Career",
+    "section": "Conclusion",
+    "text": "Conclusion\nOverall, there is not a clear pattern depicted among Carpenter’s lyrical sentiment across albums, which may suggest that Carpenter is experimenting more freely with her lyrical sentiment in different collections of work. However, it was clear that most of her best performing songs had a positive sentiment rating with low intensity, with a score ranging from -1 to 10. No song with a strongly positive or negative sentiment score received more than 100 million plays. It seems that a more balanced sentiment in her songs has led to higher streaming numbers, possibly indicating a more nuanced approach to songwriting where strong emotional elements are balanced against each other.\nLooking ahead at her upcoming album, Short n’ Sweet, it is starting off with a stronger positive sentiment. However, this observation might be skewed as only two songs were released at the time of this analysis, “Espresso” and “Please Please Please”. Given her previous success with an average sentiment score of 1.10 for her last album, emails i can’t send, I anticipate that she will likely continue to release songs with a lower or balanced sentiment score. Nevertheless, since her current singles from Short n’ Sweet have achieved notable success with a positive sentiment averaging at 7.75, she may choose to maintain this direction. Still, despite Singular Act I being her most positive album with an average sentiment score of 8.9, it did not achieve significant success. Therefore, I expect her upcoming album to have a higher average sentiment score compared to emails i can’t send, but I also predict that the average sentiment might decrease slightly as she includes a broader range of sentiments to balance the album.\n\nCritique and Future Prospects\nWhile sentiment scores can provide a general sense of a song’s emotional tone, analyzing sentiment word-by-word might not always accurately reflect the song’s true sentiment. For instance, the song “Don’t Want It Back” from Evolution has a sentiment score of -3.2. Although the Vader SIA tool might interpret this as a strong negative sentiment—possibly due to the frequent use of the word “don’t” (as reflected in the song’s title)—the actual meaning of the song is positive. In it, Carpenter expresses contentment with her relationship to the extent that she doesn’t want her heart back, indicating a joyful sentiment despite the negative score.\nIf I were to extend this project, I would conduct a comprehensive review of Carpenter’s career to understand her rise to fame more thoroughly. This may include examining various external factors beyond her lyric sentiment that may have influenced her popularity. For example, I would create a timeline of significant events in her life, explore popular trends, and analyze the efforts of her marketing team to gain a clearer picture of her growth in listeners. Additionally, I would like to study other artists across different genres and time periods to identify whether similar trends occur in their careers."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Sabrina Carpenter Research Project",
+    "section": "",
+    "text": "Unveiling the Evolution: Analyzing the Lyrical Sentiment and Streaming Patterns in Sabrina Carpenter’s Career\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nAug 5, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 2, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  }
+]
