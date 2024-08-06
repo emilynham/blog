@@ -536,50 +536,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><strong>Figure 6. Bar Graph of Sentiment Scores Across Carpenter’s Song, By Album</strong></p>
 <p>Additionally, there is a loose trend in the magnitude of sentiment across songs in Carpenter’s albums. Looking closely at the x-axis labels, it appears that in her earlier albums, Carpenter’s “positive” songs generally have stronger sentiment magnitudes. However, in her most recent albums, Singular Act II and emails I can’t send, the sentiment scores for most, if not all, songs fall within a narrower range of approximately -5 to 5. This smaller range of sentiment scores may not necessarily indicate more “neutral” songs but rather may reflect a more nuanced approach to songwriting, where strong sentiment words balance each other out.</p>
-<div id="cell-23" class="cell" data-outputid="d359f160-6746-42f9-9c2c-8d8671a04df4" data-execution_count="19">
+<div id="cell-23" class="cell" data-outputid="d359f160-6746-42f9-9c2c-8d8671a04df4">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install altair for interactive data visualizations</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install <span class="op">-</span>U altair</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install lxml</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Requirement already satisfied: altair in /usr/local/lib/python3.10/dist-packages (5.3.0)
-Requirement already satisfied: jinja2 in /usr/local/lib/python3.10/dist-packages (from altair) (3.1.4)
-Requirement already satisfied: jsonschema&gt;=3.0 in /usr/local/lib/python3.10/dist-packages (from altair) (4.23.0)
-Requirement already satisfied: numpy in /usr/local/lib/python3.10/dist-packages (from altair) (1.26.4)
-Requirement already satisfied: packaging in /usr/local/lib/python3.10/dist-packages (from altair) (24.1)
-Requirement already satisfied: pandas&gt;=0.25 in /usr/local/lib/python3.10/dist-packages (from altair) (2.1.4)
-Requirement already satisfied: toolz in /usr/local/lib/python3.10/dist-packages (from altair) (0.12.1)
-Requirement already satisfied: typing-extensions&gt;=4.0.1 in /usr/local/lib/python3.10/dist-packages (from altair) (4.12.2)
-Requirement already satisfied: attrs&gt;=22.2.0 in /usr/local/lib/python3.10/dist-packages (from jsonschema&gt;=3.0-&gt;altair) (23.2.0)
-Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /usr/local/lib/python3.10/dist-packages (from jsonschema&gt;=3.0-&gt;altair) (2023.12.1)
-Requirement already satisfied: referencing&gt;=0.28.4 in /usr/local/lib/python3.10/dist-packages (from jsonschema&gt;=3.0-&gt;altair) (0.35.1)
-Requirement already satisfied: rpds-py&gt;=0.7.1 in /usr/local/lib/python3.10/dist-packages (from jsonschema&gt;=3.0-&gt;altair) (0.19.1)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=0.25-&gt;altair) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=0.25-&gt;altair) (2024.1)
-Requirement already satisfied: tzdata&gt;=2022.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=0.25-&gt;altair) (2024.1)
-Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2-&gt;altair) (2.1.5)
-Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=0.25-&gt;altair) (1.16.0)
-Requirement already satisfied: lxml in /usr/local/lib/python3.10/dist-packages (4.9.4)</code></pre>
-</div>
 </div>
 <p>Considering streaming numbers, I plotted the sentiment scores against the Spotify stream count for each song (Figure 7). The resulting plot resembles a bell curve with a mean around 5, showing that Carpenter’s most-played songs generally have sentiment scores between -1 and 10. This indicates that her most successful songs tend to have a positive sentiment, though not excessively so. However, many songs with similar sentiment scores have lower streaming counts.</p>
 <div id="cell-25" class="cell" data-outputid="84a20a96-d93c-4b81-d052-4825d5bb0713" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interactive scatter plot of sentiment score vs. stream count using Altair</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>selopac <span class="op">=</span> alt.selection_point(on<span class="op">=</span><span class="st">'mouseover'</span>, fields<span class="op">=</span>[<span class="st">'Album'</span>], bind<span class="op">=</span><span class="st">'legend'</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>dom <span class="op">=</span> [<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>]</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> [<span class="st">'deepskyblue'</span>, <span class="st">'darkorange'</span>, <span class="st">'darkgreen'</span>, <span class="st">'purple'</span>, <span class="st">'goldenrod'</span>, <span class="st">'blue'</span>]</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Sentiment Score vs. Spotify Stream Count of Sabrina Carpenter Songs"</span>).mark_point(size<span class="op">=</span><span class="dv">40</span>).encode(</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Sentiment Score'</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Streams'</span>,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'Song Title'</span>, <span class="st">'Album'</span>, <span class="st">'Streams'</span>, <span class="st">'Sentiment Score'</span>],</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span>alt.condition(selopac, alt.value(<span class="dv">1</span>), alt.value(<span class="fl">0.2</span>)),</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'Album'</span>, scale<span class="op">=</span>alt.</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>                    Scale(domain<span class="op">=</span>dom, <span class="bu">range</span><span class="op">=</span>rng))</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    selopac</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>).interactive()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interactive scatter plot of sentiment score vs. stream count using Altair</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>selopac <span class="op">=</span> alt.selection_point(on<span class="op">=</span><span class="st">'mouseover'</span>, fields<span class="op">=</span>[<span class="st">'Album'</span>], bind<span class="op">=</span><span class="st">'legend'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>dom <span class="op">=</span> [<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>]</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> [<span class="st">'deepskyblue'</span>, <span class="st">'darkorange'</span>, <span class="st">'darkgreen'</span>, <span class="st">'purple'</span>, <span class="st">'goldenrod'</span>, <span class="st">'blue'</span>]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Sentiment Score vs. Spotify Stream Count of Sabrina Carpenter Songs"</span>).mark_point(size<span class="op">=</span><span class="dv">40</span>).encode(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'Sentiment Score'</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'Streams'</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'Song Title'</span>, <span class="st">'Album'</span>, <span class="st">'Streams'</span>, <span class="st">'Sentiment Score'</span>],</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span>alt.condition(selopac, alt.value(<span class="dv">1</span>), alt.value(<span class="fl">0.2</span>)),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">'Album'</span>, scale<span class="op">=</span>alt.</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                    Scale(domain<span class="op">=</span>dom, <span class="bu">range</span><span class="op">=</span>rng))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    selopac</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>).interactive()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 
 <style>
@@ -653,39 +633,39 @@ Requirement already satisfied: lxml in /usr/local/lib/python3.10/dist-packages (
 <p>It is evident that Carpenter’s most streamed songs come from her recent album, <em>Short n’ Sweet</em>. Additionally, her album <em>emails i can’t send</em> features a cluster of tracks, each with at least 50 million streams, indicating that these songs have similar sentiment scores and comparable performance. This is notable because one might expect that a greater range of sentiment could appeal to a wider audience. However, it appears that a more balanced sentiment in her songs has contributed to higher streaming numbers. Furthermore, each album before this—excluding her debut—includes at least one standout track that performed significantly better than the others.</p>
 <p>For a different perspective on sentiment scores and stream counts, I plotted the average values for each of Carpenter’s albums in order of release (Figure 8). This approach helps visualize the relationship across Carpenter’s musical career, despite not capturing the granularity of each individual song’s success.</p>
 <div id="cell-28" class="cell" data-outputid="36615b71-1271-4f0e-d28b-b377df4b2a0d" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot horizontal interactive line plots average stream count and average sentiment scores across albums using Altair</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>selopac <span class="op">=</span> alt.selection_point(nearest<span class="op">=</span><span class="va">True</span>,on<span class="op">=</span><span class="st">'mouseover'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>avg_streams_chart <span class="op">=</span> alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Average Spotify Stream Count"</span>).transform_aggregate(</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    streams_mean<span class="op">=</span><span class="st">'mean(Streams)'</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span>[<span class="st">'Album'</span>]</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Album:O'</span>, sort<span class="op">=</span>[<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>], title<span class="op">=</span><span class="st">'Album'</span>),</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'streams_mean:Q'</span>, title<span class="op">=</span><span class="st">"Value"</span>),</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'streams_mean:Q'</span>]</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>).properties(</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">300</span></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    selopac</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>).interactive()</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>avg_sentiment_chart <span class="op">=</span> alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Average Sentiment Score"</span>).transform_aggregate(</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    sentiment_mean<span class="op">=</span><span class="st">'mean(Sentiment Score)'</span>,</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span>[<span class="st">'Album'</span>]</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Album:O'</span>, sort<span class="op">=</span>[<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>], title<span class="op">=</span><span class="st">'Album'</span>),</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'sentiment_mean:Q'</span>, title<span class="op">=</span><span class="st">"Value"</span>),</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'sentiment_mean:Q'</span>],</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.value(<span class="st">'orange'</span>)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>).properties(</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">300</span></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    selopac</span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>).interactive()</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>avg_streams_chart <span class="op">|</span> avg_sentiment_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot horizontal interactive line plots average stream count and average sentiment scores across albums using Altair</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>selopac <span class="op">=</span> alt.selection_point(nearest<span class="op">=</span><span class="va">True</span>,on<span class="op">=</span><span class="st">'mouseover'</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>avg_streams_chart <span class="op">=</span> alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Average Spotify Stream Count"</span>).transform_aggregate(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    streams_mean<span class="op">=</span><span class="st">'mean(Streams)'</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span>[<span class="st">'Album'</span>]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Album:O'</span>, sort<span class="op">=</span>[<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>], title<span class="op">=</span><span class="st">'Album'</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'streams_mean:Q'</span>, title<span class="op">=</span><span class="st">"Value"</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'streams_mean:Q'</span>]</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    selopac</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>).interactive()</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>avg_sentiment_chart <span class="op">=</span> alt.Chart(cleaned_streams_df, title<span class="op">=</span><span class="st">"Average Sentiment Score"</span>).transform_aggregate(</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    sentiment_mean<span class="op">=</span><span class="st">'mean(Sentiment Score)'</span>,</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    groupby<span class="op">=</span>[<span class="st">'Album'</span>]</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Album:O'</span>, sort<span class="op">=</span>[<span class="st">'Eyes Wide Open'</span>, <span class="st">'Evolution'</span>, <span class="st">'Singular Act I'</span>, <span class="st">'Singular Act II'</span>, <span class="st">'emails i can’t send'</span>, <span class="st">'Short n</span><span class="ch">\'</span><span class="st"> Sweet'</span>], title<span class="op">=</span><span class="st">'Album'</span>),</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'sentiment_mean:Q'</span>, title<span class="op">=</span><span class="st">"Value"</span>),</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    tooltip<span class="op">=</span>[<span class="st">'sentiment_mean:Q'</span>],</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.value(<span class="st">'orange'</span>)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">300</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>).add_params(</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    selopac</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>).interactive()</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>avg_streams_chart <span class="op">|</span> avg_sentiment_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 
 <style>
